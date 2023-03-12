@@ -7,14 +7,26 @@ import time
 from datetime import datetime
 from urllib.parse import urlparse
 from posixpath import basename, dirname
-import img2pdf
+from mega import Mega
 
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
+
 
 def predict(image_path=None,model_path=r"C:\Users\indra\Downloads\best.pt"):
+    
+    #downloading best.pt file from mega
+    
+    mega = Mega()
 
-    model = yolov5.load(model_path)
+    m = mega.login("bhattacharyya73@gmail.com", "Biochemist@2023")
+    link = "https://mega.nz/file/1F8X0SQb#xV-ZSez6OOc7t3TYpgy45To11egoo2UMz3BjVi0ZHyg"
+
+    m.download_url(link,"best.pt")
+
+    
+    
+    
+    
+    model = yolov5.load("best.pt")
     
 
     # set model parameters
